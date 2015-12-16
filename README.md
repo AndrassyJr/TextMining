@@ -3,6 +3,8 @@ Exercício Programa de Text Mining:
 
 O objetivo deste exercício programa é desenvolver um classificador de perguntas levando-se em consideração alguns artefatos já desenvolvidos ao longo da disciplina:
 
+• Um dataset sobre um domínio específico com perguntas e intenções mapeadas.
+
 • Um classificador gerado a partir do uso do serviço Natural Language Classifier (NLC) existente na plataforma
 Bluemix. Este classificador deverá ser considerado como gold standard neste estudo.
 

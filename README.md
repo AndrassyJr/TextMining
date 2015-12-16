@@ -1,5 +1,5 @@
-# Text Mining
-Exercício Programa de Text Mining: Classificador de Intenções de Perguntas
+# Classificador de Intenções de Perguntas
+Exercício Programa de Text Mining: 
 
 O objetivo deste exercício programa é desenvolver um classificador de perguntas levando-se em consideração alguns artefatos já desenvolvidos ao longo da disciplina:
 

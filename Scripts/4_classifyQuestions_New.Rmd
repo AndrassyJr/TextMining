@@ -1,0 +1,96 @@
+==========================================================
+
+**Exercício Programa de Text Mining: classificador de intenções de pergunta**
+
+Prof. Fabrício Jailson Barth
+
+Alunos: Agustin J. Ayala, Andrassy Santos Jr, Francisco Aleixo, Franklin Vieira
+        
+==========================================================
+  
+**4. Alteração do script em R visando o aperfeiçoamento do modelo gerado pelo mesmo. Criação de um modelo e estimativa de acurácia.**
+
+**Acurácia Obtida = 0.6129**
+
+
+Carga das Bibliotecas necessárias
+```{r}
+library(tm)
+library(SnowballC)
+library(randomForest)
+library(caret)
+```
+
+Leitura do CSV
+```{r}
+perguntas <- read.csv("~/RStudio/Data/perguntas.csv")
+```
+
+Aplicando transformações no corpus, removendo acentos e convertendo para caixa baixa:
+```{r}
+text <- iconv(perguntas$text,to="ASCII//TRANSLIT")
+text <- tolower(text)
+text <- removePunctuation(text)
+text <- removeNumbers(text)
+text <- removeWords(text, stopwords("portuguese"))
+#text <- wordStem(text, language="portuguese")
+```
+
+Construindo uma matriz de termos versus documentos para iniciar o processo
+```{r}
+myCorpus <- Corpus(VectorSource(text))
+
+myCorpus<- tm_map(myCorpus, stemDocument, language="portuguese")
+myCorpus <- tm_map(myCorpus, removeWords, c("qua", "sao"))
+
+docs_term <- DocumentTermMatrix(myCorpus)
+findFreqTerms(docs_term, lowfreq=20)
+
+dataset <- as.data.frame(
+  cbind(
+    inspect(docs_term), 
+    perguntas)
+)
+dataset$text <- NULL
+dataset$text <- NULL
+```
+
+Separando os datasets em treino e teste
+```{r}
+set.seed(1234)
+
+intrain <- createDataPartition(y = perguntas$class, p = 0.80, list=F)
+ 
+treino <- dataset[intrain, ]  # amostra para treino
+teste <- dataset[-intrain, ] # amostra para teste
+``` 
+
+Criando o Novo Modelo
+```{r}
+new_model <- randomForest(
+   class ~ ., 
+   data = treino, 
+   importance = TRUE, 
+   do.trace = 100)
+new_model
+
+plot(new_model)
+varImpPlot(new_model)
+  
+preditos <- predict(new_model, teste)
+ 
+table(preditos, teste$class)
+prop.table(table(preditos, teste$class),1)
+```
+
+Calculo da Acuracidade, Confusion Matrix
+```{r}
+confusionMatrix(preditos, teste$class)
+
+```
+Resultado 
+```{r} 
+TestePerguntas <- perguntas[-intrain, ]
+TestePerguntas$ClassRF = preditos
+print(TestePerguntas)
+```

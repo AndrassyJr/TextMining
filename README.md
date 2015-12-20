@@ -11,7 +11,7 @@ Bluemix. Este classificador deverá ser considerado como gold standard neste est
 • Um processo, implementado em R, que realiza o pré-processamento e constrói o classificador. O modelo resultante deste processo será considerado como o baseline neste estudo. Para a entrega deste projeto deverão ser realizadas as seguintes atividades:
 
 1. Aumentar o dataset para uma amostra com no mínimo 15 classes e 10 exemplos para cada classe;
-    perguntas.csv (162)
+<br>    perguntas.csv (162)
 
 2. Re-treino de uma instância do NLC e cálculo da estimativa de acurácia.
     Acurácia obtida = 0,742 (IBM Bluemix)

@@ -14,11 +14,11 @@ Bluemix. Este classificador deverá ser considerado como gold standard neste est
 <br>    perguntas.csv (162)
 
 2. Re-treino de uma instância do NLC e cálculo da estimativa de acurácia.
-    Acurácia obtida = 0,742 (IBM Bluemix)
+<br>    Acurácia obtida = 0,742 (IBM Bluemix)
 
 3. Execução do script em R com o dataset criado, criação do modelo e estimativa de acurácia.
-    Acurácia obtida = 0,4194 (Modelo em R)
+<br>    Acurácia obtida = 0,4194 (Modelo em R)
 
 4. Alteração do script em R visando o aperfeiçoamento do modelo gerado pelo mesmo. Criação de um modelo e estimativa de acurácia. As alterações podem ser feitas no pré-processamento do texto, na filtragem dos atributos ou na construção do modelo.
-    Acurácia obtida = 0,6129 (Modelo em R melhorado)
+<br>    Acurácia obtida = 0,6129 (Modelo em R melhorado)
 
